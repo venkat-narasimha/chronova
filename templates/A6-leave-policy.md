@@ -69,7 +69,7 @@ The 9 leave types below cover ~95% of Indian college / hospital leave policies. 
 | 5 | **Encashment on separation** | Yes/No | No | Rarely encashed; some allow up to 50% |
 | 6 | **Medical certificate threshold** | Days | 2 consecutive days | Strict colleges require certificate from Day 1 |
 | 7 | **Applicable to** | Multi-select | All employee categories | |
-| 8 | **Approval level** | Dropdown | L1 — Immediate Manager | For >3 consecutive days, escalate to L2 (HOD) |
+| 8 | **Approval level** | Dropdown | L1 — Immediate Manager; **L2 (HOD) mandatory for >3 consecutive days** | Escalation rule: short SL (≤3 days) = L1 only; longer SL (>3 days) requires L2 sign-off. This is the reconciled rule (see validation finding X-3). |
 | 9 | **Notice period** | Number (days) | Same day / morning of | Sick leave is by definition unplanned; no prior notice |
 
 **Frappe HR mapping:** `Leave Type = "Sick Leave"`, `max_continuous_days_allowed = 10`, `carry_forward = 6`, `is_carry_forward = 1`, `medical_leave = 1` (custom flag to allow longer post-medical-certification).
@@ -95,6 +95,8 @@ The 9 leave types below cover ~95% of Indian college / hospital leave policies. 
 ### 1.4 Maternity / Paternity Leave (ML)
 
 > **Maternity Benefit (Amendment) Act 2017** makes this mandatory: **26 weeks** for first 2 children, **12 weeks** for 3rd+ child or adoption / commissioning. Paternity leave is **not yet** mandatory in India (Bill 2017 pending), but most colleges offer 7-15 days.
+>
+> **3rd-child rule (statutory, non-negotiable):** The 26-week entitlement applies only to the first **two** surviving children. For the 3rd child, the entitlement drops to **12 weeks (84 days)**. Because Frappe HR cannot apply the 26-vs-12 split conditionally on parity, **a separate Leave Type row is required** — see `Maternity Leave (3rd+ Child)` in the CSV below §4. The consultant must ask the client to clarify the leave-type assignment per pregnancy; the typical rule is to grant ML based on the **count of previous live births** declared in the medical certificate.
 
 | # | Attribute | Type | Typical value | Notes |
 |---|-----------|------|---------------|-------|
@@ -105,7 +107,7 @@ The 9 leave types below cover ~95% of Indian college / hospital leave policies. 
 | 5 | **Encashment on separation** | Yes/No | No | Maternity leave is non-encashable |
 | 6 | **Medical certificate threshold** | Days | N/A (entire leave is medical) | Submit hospital certificate and expected delivery date |
 | 7 | **Applicable to** | Multi-select | Female employees (Maternity); Male employees (Paternity) | Covers all categories; service tenure ≥ 80 days in last 12 months for ML |
-| 8 | **Approval level** | Dropdown | L3 — Principal / HR Head | Sensitive, requires top-level sign-off; HR files Form Maternity Benefit |
+| 8 | **Approval level** | Dropdown | L3 — Principal / HR Head | Sensitive, requires top-level sign-off; HR files Form Maternity Benefit. **Note:** A6's "approval level" = the **final authority** on the leave; A7 §2.1 still routes the application through L1 (manager) and L2 (HOD) for prior concurrence. The L3 designation here is the decision-maker, not the only approver — see A7 §1 for the cross-document definition. |
 | 9 | **Notice period** | Number (days) | 8 weeks before expected delivery | As per Maternity Benefit Act §6(3) |
 
 **Frappe HR mapping:** Two Leave Types — `Maternity Leave` and `Paternity Leave`. `is_lwp = 0`, `is_paid = 1` (custom), `allow_negative = 0`, `max_continuous_days_allowed = 182` (Maternity) / `15` (Paternity). Add custom field `is_maternity_benefit_act` to ensure compliance reporting.
@@ -121,7 +123,7 @@ The 9 leave types below cover ~95% of Indian college / hospital leave policies. 
 | 5 | **Encashment on separation** | Yes/No | No | Comp off is work-effort-based, not salary-based; rarely encashed |
 | 6 | **Medical certificate threshold** | Days | N/A | Not medical leave |
 | 7 | **Applicable to** | Multi-select | All employees who work on off-days | Critical for hospital staff (24×7) and exam-period faculty |
-| 8 | **Approval level** | Dropdown | L2 — HOD + L3 — HR confirmation | HOD approves the original extra-day work; HR confirms the comp-off credit |
+| 8 | **Approval level** | Dropdown | L1 — Reporting Officer → L2 — HOD → L3 — HR | L1 verifies the extra day was actually worked; L2 confirms with biometric/attendance; L3 (HR) releases the comp-off credit to leave balance. **Note:** A6's "approval level" = **final authority**; full chain is L1→L2→L3 — see A7 §2.4. |
 | 9 | **Notice period** | Number (days) | 3 days prior (when availing) | Plan the comp-off in advance |
 
 **Frappe HR mapping:** `Leave Type = "Compensatory Off"`, `is_compensatory = 1` (custom flag), `max_continuous_days_allowed = 2`, `carry_forward = 30`, `is_carry_forward = 1`, `is_paid = 1`.
@@ -137,7 +139,7 @@ The 9 leave types below cover ~95% of Indian college / hospital leave policies. 
 | 5 | **Encashment on separation** | Yes/No | N/A | LWP is unpaid; nothing to encash |
 | 6 | **Medical certificate threshold** | Days | N/A | If for medical reasons, the leave should be SL with cert; LWP is for non-medical gaps |
 | 7 | **Applicable to** | Multi-select | All categories | But typically: travel, family obligations, prolonged personal matters |
-| 8 | **Approval level** | Dropdown | L3 — Principal / HR Head | High-impact on payroll, PF, gratuity; needs principal sign-off |
+| 8 | **Approval level** | Dropdown | L3 — Principal / HR Head | High-impact on payroll, PF, gratuity; needs principal sign-off. **Note:** A6's "approval level" = **final authority**; A7 §2.1 still chains the application through L1 (manager) and L2 (HOD) for prior concurrence — see A7 §1. |
 | 9 | **Notice period** | Number (days) | 7 days prior | As long as the employee can plan |
 
 **Frappe HR mapping:** `Leave Type = "Leave Without Pay"`, `is_lwp = 1`, `is_paid = 0`, `allow_negative = 0`, `max_continuous_days_allowed = 90`. Set HR Settings → `include_holidays_in_total_leave_days = 0` for LWP calculations.
@@ -171,7 +173,7 @@ The 9 leave types below cover ~95% of Indian college / hospital leave policies. 
 | 5 | **Encashment on separation** | Yes/No | No | Special leaves are not encashable |
 | 6 | **Medical certificate threshold** | Days | N/A (except paternity — birth certificate required) | |
 | 7 | **Applicable to** | Multi-select | All categories | Study sabbatical typically for permanent teaching staff only |
-| 8 | **Approval level** | Dropdown | L3 — Principal | All special leaves need principal sign-off; study sabbatical needs Chairman |
+| 8 | **Approval level** | Dropdown | L3 — Principal | All special leaves need principal sign-off; study sabbatical needs Chairman. **Note:** A6's "approval level" = **final authority**; A7 §2.1 still routes the application through L1 (manager) and L2 (HOD) for prior concurrence — see A7 §1. |
 | 9 | **Notice period** | Number (days) | 7 days prior (for marriage) / 30 days (for study) | Bereavement is same-day |
 
 **Sub-categories** (custom field `special_leave_category`):
@@ -181,13 +183,12 @@ The 9 leave types below cover ~95% of Indian college / hospital leave policies. 
 | Bereavement (immediate family) | 7 | Death certificate |
 | Bereavement (extended family) | 3 | Death certificate |
 | Marriage (self) | 5 | Wedding invitation |
-| Paternity (within 6 months of birth) | 7-15 | Birth certificate |
 | Adoption | 12 weeks | Adoption order |
 | Study leave (PhD / higher study) | Up to 365 | Admission letter + principal recommendation |
 | Jury / civic duty | As required | Court summons |
 | Sports / cultural representation | As required | Selection letter from association |
 
-**Frappe HR mapping:** `Leave Type = "Special Leave"`, `is_special_leave = 1` (custom), `is_paid = 1`, `allow_negative = 0`, custom field `special_leave_category` (Select with the 8 sub-categories above). `max_continuous_days_allowed = 365` (study) with `special_leave_max_days_per_subcategory` (custom child table).
+**Frappe HR mapping:** `Leave Type = "Special Leave"`, `is_special_leave = 1` (custom), `is_paid = 1`, `allow_negative = 0`, custom field `special_leave_category` (Select with the 7 sub-categories above — **Paternity consolidated to §1.4 as its own Leave Type to avoid double-counting with the statutory ML-Paternity row**). `max_continuous_days_allowed = 365` (study) with `special_leave_max_days_per_subcategory` (custom child table).
 
 ### 1.9 Comp Off — Reference (already covered in 1.5)
 
@@ -226,7 +227,7 @@ Beyond per-leave-type rules, capture how each leave type applies to each **emplo
 | **Maternity Benefit (Amendment) Act 2017** | All women employees | 26 weeks for first 2 children, 12 weeks for 3rd+ |
 | **Payment of Wages Act 1936** | All employees | Leave encashment must be paid before employee's next pay cycle |
 | **Payment of Gratuity Act 1972** | Employees with 5+ years service | LWP > 6 months breaks continuous service for gratuity eligibility |
-| **Income Tax Act 1961** | All employees | Encashed leave up to ₹25,00,000 in a year is exempt from tax (old regime; check current rules) |
+| **Income Tax Act 1961** | All employees | Encashed leave up to ₹25,00,000 in a year is exempt from tax (old regime; **verify with current FY limit before sending to prospect** — Section 10(10AA) was amended by Finance Act 2023; non-Government employees may no longer qualify for the ₹25L ceiling) |
 | **NMC (MCI) Regulations** | Medical colleges | Resident duty hours cap at 48 hrs/week averaged over 4 weeks; affects OD/LWP for residents |
 | **UGC Regulations on Minimum Qualifications** | Universities / colleges | Faculty study leave entitlement varies; check UGC 2018 regulations |
 
@@ -241,15 +242,15 @@ leave_type,leave_type_code,accrual_rate,accrual_period,carry_forward_limit,max_c
 "Casual Leave","CL",1,Monthly,0,3,No,0,2,"Teaching|NT-Academic|Medical|Paramedical|Admin|Support",L1-Manager,1,No,No,No,No,No,No,"max_continuous_days_allowed=3; carry_forward=0"
 "Sick Leave","SL",1,Monthly,6,10,No,0,2,"Teaching|NT-Academic|Medical|Paramedical|Admin|Support",L1-Manager,0,No,No,No,No,No,No,"max_continuous_days_allowed=10; carry_forward=6; medical_leave=1"
 "Earned Leave","EL",1.5,Monthly,30,30,Yes,30,0,"Teaching|NT-Academic|Medical|Paramedical|Admin|Support",L2-HOD,7,Yes,No,No,No,No,No,"is_earned_leave=1; earned_leave_frequency=Monthly; allow_encashment=1; encashment_threshold_days=30; earning_component=Basic"
-"Maternity Leave","ML-Maternity",26,Weeks-lumpsum,0,182,No,0,0,"Teaching|NT-Academic|Medical|Paramedical|Admin|Support",L3-Principal,56,No,No,No,Yes,No,No,"is_paid=1; is_lwp=0; max_continuous_days_allowed=182; maternity_benefit_act=1; submit-medical-certificate=Yes"
+"Maternity Leave","ML-Maternity",26,Weeks-lumpsum,0,182,No,0,0,"Teaching|NT-Academic|Medical|Paramedical|Admin|Support",L3-Principal,56,No,No,No,Yes,No,No,"is_paid=1; is_lwp=0; max_continuous_days_allowed=182; maternity_benefit_act=1; submit-medical-certificate=Yes; child_count_max=2"
+"Maternity Leave 3rd+ Child","ML-Maternity-3rd",12,Weeks-lumpsum,0,84,No,0,0,"Teaching|NT-Academic|Medical|Paramedical|Admin|Support",L3-Principal,56,No,No,No,Yes,No,No,"is_paid=1; is_lwp=0; max_continuous_days_allowed=84; maternity_benefit_act=1; submit-medical-certificate=Yes; child_count_min=3"
 "Paternity Leave","ML-Paternity",7,Days-lumpsum,0,7,No,0,0,"Teaching|NT-Academic|Medical|Paramedical|Admin|Support",L3-Principal,0,No,No,No,No,Yes,No,"is_paid=1; is_lwp=0; max_continuous_days_allowed=7; require-birth-certificate=Yes"
 "Compensatory Off","COMP",1,Per-occurrence,30,2,No,0,0,"Teaching|NT-Academic|Medical|Paramedical|Admin|Support",L2-HOD-plus-HR,3,No,No,Yes,No,No,No,"is_compensatory=1; max_continuous_days_allowed=2; carry_forward=30; expiry_days=90"
 "Leave Without Pay","LWP",0,On-application,0,90,No,0,0,"Teaching|NT-Academic|Medical|Paramedical|Admin|Support",L3-Principal,7,No,Yes,No,No,No,No,"is_lwp=1; is_paid=0; max_continuous_days_allowed=90; break-in-service-tracking=Yes"
 "On Duty","OD",0,Per-occurrence,0,14,No,0,0,"Teaching|NT-Academic|Medical|Paramedical|Admin",L2-HOD-plus-L3,7,No,No,No,No,No,No,"custom-doctype-on-duty-application; or leave-application with custom flag"
 "Special Leave Bereavement","SPL-BR",7,Event-lumpsum,0,7,No,0,0,"All",L3-Principal,0,No,No,No,No,No,Yes,"is_special=1; sub-category=Bereavement-immediate-family"
 "Special Leave Marriage","SPL-MR",5,Event-lumpsum,0,5,No,0,0,"All",L3-Principal,7,No,No,No,No,No,Yes,"is_special=1; sub-category=Marriage-self; lifetime-cap=2"
-"Special Leave Paternity Extended","SPL-PT",15,Event-lumpsum,0,15,No,0,0,"All",L3-Principal,0,No,No,No,No,No,Yes,"is_special=1; sub-category=Paternity-extended; require-birth-certificate=Yes; expire-days-after-event=180"
-"Special Leave Study","SPL-SD",365,Event-lumpsum,0,365,No,0,0,"Teaching-FT-only",L3-Principal-plus-Chairman,30,No,No,No,No,No,Yes,"is_special=1; sub-category=Study-PhD; service-tenure-min=3-years; bond-period=2-years-post-return"
+"Special Leave Paternity Extended","SPL-PT",15,Event-lumpsum,0,15,No,0,0,"All",L3-Principal,0,No,No,No,No,No,Yes,"is_special=1; sub-category=Paternity-extended; require-birth-certificate=Yes; expire-days-after-event=180""Special Leave Study","SPL-SD",365,Event-lumpsum,0,365,No,0,0,"Teaching-FT-only",L3-Principal-plus-Chairman,30,No,No,No,No,No,Yes,"is_special=1; sub-category=Study-PhD; service-tenure-min=3-years; bond-period=2-years-post-return"
 ```
 
 **4 sample institutions (one row per major org type):**
