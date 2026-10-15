@@ -366,7 +366,6 @@ By signing below, the signatory confirms that the approval hierarchy described i
 | Finance Officer (confirms monetary thresholds) | | | |
 | Chairman / Secretary (optional, for high-impact workflows) | | | |
 
-**Form version:** v1.0 (2026-10-15)
 
 ---
 

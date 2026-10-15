@@ -301,7 +301,6 @@ By signing below, the signatory confirms that the leave policy described in this
 | Finance Officer (confirms encashment rules) | | | |
 | Legal / Compliance Officer (optional) | | | |
 
-**Form version:** v1.0 (2026-10-15)
 
 ---
 

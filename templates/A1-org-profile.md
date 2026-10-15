@@ -199,7 +199,6 @@ By signing below, the signatory confirms that the information provided in this f
 | CFO / Finance Officer | | | |
 | Chairman / Secretary (optional, if budget pre-approved) | | | |
 
-**Form version:** v1.0 (2026-10-15)
 
 ---
 
