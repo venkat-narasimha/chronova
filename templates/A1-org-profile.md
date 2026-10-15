@@ -12,7 +12,7 @@
 
 ## What This Is
 
-This is the **first intake form** Chronova sends to every prospect **after the discovery meeting, before signing the Statement of Work**. It captures the institutional facts we need to provision a Frappe HR instance that matches the college's structure on Day 1.
+This is the **first intake form** Chronova sends to every prospect **after the discovery meeting, before signing the Statement of Work**. It captures the institutional facts we need to provision a Frappe HR instance that matches the institution's structure on Day 1.
 
 The form has two halves: (a) institutional / academic profile (what kind of college you are, who regulates you, what you teach), and (b) HR / operational profile (how many people you employ, how you run payroll, who your decision-makers are, when you want to go live). Every field maps to a downstream configuration decision in Frappe HR.
 

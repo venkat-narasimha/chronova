@@ -13,7 +13,7 @@
 
 ## What This Is
 
-This is the **leave policy intake form** Chronova uses to configure a Frappe HR instance that matches the college's existing leave rules. The form captures the **nine standard leave types** that every Indian college / hospital / university should have, with **nine attributes per leave type** — accrual rate, accrual period, carry-forward limit, maximum consecutive days, encashment rules, medical certificate threshold, applicability, approval level, and notice period.
+This is the **leave policy intake form** Chronova uses to configure a Frappe HR instance that matches the institution's existing leave rules. The form captures the **nine standard leave types** that every Indian college / hospital / university should have, with **nine attributes per leave type** — accrual rate, accrual period, carry-forward limit, maximum consecutive days, encashment rules, medical certificate threshold, applicability, approval level, and notice period.
 
 The form's output drives the **Leave Type DocType** in Frappe HR (one Leave Type per row in the CSV) and the **Leave Policy** + **Leave Policy Assignment** setup that bundles entitlements per employee class. Every field has a default, but the default is **Conservative Indian Private Sector** — most clients override at least 6 of the 9 attributes per leave type.
 
