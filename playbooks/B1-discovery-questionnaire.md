@@ -1,9 +1,5 @@
 # B1 — Discovery Questionnaire (Internal Playbook)
 
-**Document Code:** B1
-**Document Name:** Discovery Meeting Playbook — 4-Phase Consultant Script
-**Audience:** Venkat + any sales consultant who runs the first prospect meeting
-**Total meeting duration:** 2h 15min (default); compressible to 1h 30min for smaller prospects
 ---
 
 ## What This Is
