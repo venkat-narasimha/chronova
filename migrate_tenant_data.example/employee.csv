@@ -1,0 +1,21 @@
+name,first_name,last_name,company,department,designation,date_of_joining,date_of_birth,gender,status,employment_type,default_shift,reports_to
+HR-EMP-00001,Ramesh,Kumar,Greenwood Medical College & Hospital,Pre-Clinical,Professor,2010-07-15,1975-04-12,Male,Active,Full-time,Morning Duty,
+HR-EMP-00002,Suresh,Iyer,Greenwood Medical College & Hospital,Pre-Clinical,Associate Professor,2014-08-01,1980-09-23,Male,Active,Full-time,Morning Duty,HR-EMP-00001
+HR-EMP-00003,Anjali,Sharma,Greenwood Medical College & Hospital,Para-Clinical,Assistant Professor,2018-09-10,1985-11-30,Female,Active,Full-time,Morning Duty,HR-EMP-00001
+HR-EMP-00004,Vikram,Patel,Greenwood Medical College & Hospital,Clinical,Senior Resident,2020-02-01,1990-06-15,Male,Active,Full-time,Long Day,HR-EMP-00002
+HR-EMP-00005,Priya,Nair,Greenwood Medical College & Hospital,Clinical,Junior Resident,2023-01-15,1996-03-22,Female,Active,Full-time,Long Day,HR-EMP-00004
+HR-EMP-00006,Arjun,Reddy,Greenwood Medical College & Hospital,Cardiology,Medical Officer,2019-06-20,1987-08-08,Male,Active,Full-time,Morning Duty,HR-EMP-00004
+HR-EMP-00007,Meera,Krishnan,Greenwood Medical College & Hospital,Orthopedics,Medical Officer,2019-11-12,1988-12-05,Female,Active,Full-time,Morning Duty,HR-EMP-00002
+HR-EMP-00008,Sunita,Devi,Greenwood Medical College & Hospital,Nursing,Nursing Superintendent,2012-03-18,1978-05-20,Female,Active,Full-time,General Duty,HR-EMP-00001
+HR-EMP-00009,Lakshmi,Bai,Greenwood Medical College & Hospital,Nursing,Staff Nurse,2017-05-22,1992-01-10,Female,Active,Full-time,Evening Duty,HR-EMP-00008
+HR-EMP-00010,Kavita,Singh,Greenwood Medical College & Hospital,Nursing,Staff Nurse,2021-08-05,1994-07-18,Female,Active,Full-time,Night Duty,HR-EMP-00008
+HR-EMP-00011,Rajesh,Gupta,Greenwood Medical College & Hospital,Para-Clinical,Lab Technician,2016-04-11,1986-02-25,Male,Active,Full-time,General Duty,HR-EMP-00003
+HR-EMP-00012,Mohammed,Aslam,Greenwood Medical College & Hospital,Pre-Clinical,Lab Technician,2019-10-09,1990-11-14,Male,Active,Full-time,General Duty,HR-EMP-00002
+HR-EMP-00013,Anita,Desai,Greenwood Medical College & Hospital,Administration,Admin Officer,2015-07-30,1982-09-04,Female,Active,Full-time,General Duty,HR-EMP-00001
+HR-EMP-00014,Vinod,Khanna,Greenwood Medical College & Hospital,HR,HR Manager,2016-02-14,1980-12-22,Male,Active,Full-time,General Duty,HR-EMP-00013
+HR-EMP-00015,Sunil,Verma,Greenwood Medical College & Hospital,Administration,Finance Manager,2017-09-25,1983-04-17,Male,Active,Full-time,General Duty,HR-EMP-00013
+HR-EMP-00016,Prakash,Joshi,Greenwood Medical College & Hospital,Administration,IT Manager,2018-11-30,1984-08-30,Male,Active,Full-time,General Duty,HR-EMP-00013
+HR-EMP-00017,Geeta,Yadav,Greenwood Medical College & Hospital,Administration,Housekeeping Supervisor,2019-04-22,1985-10-11,Female,Active,Full-time,General Duty,HR-EMP-00013
+HR-EMP-00018,Ramesh,Yadav,Greenwood Medical College & Hospital,Administration,Security Supervisor,2019-06-15,1982-06-28,Male,Active,Full-time,General Duty,HR-EMP-00013
+HR-EMP-00019,Karthik,Menon,Greenwood Medical College & Hospital,Cardiology,Senior Resident,2021-12-01,1992-05-09,Male,Active,Full-time,Long Day,HR-EMP-00006
+HR-EMP-00020,Neha,Joshi,Greenwood Medical College & Hospital,Orthopedics,Junior Resident,2024-01-08,1997-02-14,Female,Active,Full-time,Long Day,HR-EMP-00007

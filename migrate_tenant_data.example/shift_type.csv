@@ -1,0 +1,6 @@
+name,start_time,end_time,holiday_list,enable_auto_attendance,last_sync_of_checkin,working_hours_threshold_for_half_day
+Morning Duty,08:00:00,16:00:00,GMCH Holiday List 2026,1,2026-11-01 00:00:00,4
+Evening Duty,16:00:00,00:00:00,GMCH Holiday List 2026,1,2026-11-01 00:00:00,4
+Night Duty,00:00:00,08:00:00,GMCH Holiday List 2026,1,2026-11-01 00:00:00,4
+General Duty,09:00:00,17:00:00,GMCH Holiday List 2026,1,2026-11-01 00:00:00,4
+Long Day,08:00:00,20:00:00,GMCH Holiday List 2026,1,2026-11-01 00:00:00,6

@@ -1,0 +1,27 @@
+{
+  "company_name": "Greenwood Medical College & Hospital",
+  "company_abbr": "GMCH",
+  "country": "India",
+  "default_currency": "INR",
+  "fiscal_year_start_month": 4,
+  "timezone": "Asia/Kolkata",
+  "shift_naming_convention": "prompt",
+
+  "department_root": "All Departments",
+  "item_group_root": "All Item Groups",
+  "approver_user": "Administrator",
+  "default_shift_location": "Main Campus - Hyderabad",
+  "holidays_fiscal_year_label": "FY 2026-27",
+
+  "leave_type_defaults": {
+    "Privilege Leave":        { "max_leaves_allowed": 24, "is_carry_forward": 1, "carry_forward_balance": 12, "applicable_after": 0,  "max_continuous_days_allowed": 30 },
+    "Casual Leave":           { "max_leaves_allowed": 12, "is_carry_forward": 0, "carry_forward_balance": 0,  "applicable_after": 0,  "max_continuous_days_allowed": 6 },
+    "Sick Leave":             { "max_leaves_allowed": 12, "is_carry_forward": 1, "carry_forward_balance": 6,  "applicable_after": 0,  "max_continuous_days_allowed": 12 },
+    "Earned Leave":           { "max_leaves_allowed": 30, "is_carry_forward": 1, "carry_forward_balance": 30, "applicable_after": 0,  "max_continuous_days_allowed": 60 },
+    "Maternity Leave":        { "max_leaves_allowed": 180,"is_carry_forward": 0, "carry_forward_balance": 0,  "applicable_after": 0,  "max_continuous_days_allowed": 180, "is_pro_rata": 0 },
+    "Paternity Leave":        { "max_leaves_allowed": 15, "is_carry_forward": 0, "carry_forward_balance": 0,  "applicable_after": 0,  "max_continuous_days_allowed": 15 },
+    "Study Leave":            { "max_leaves_allowed": 10, "is_carry_forward": 0, "carry_forward_balance": 0,  "applicable_after": 365,"max_continuous_days_allowed": 10 },
+    "Compensatory Off":       { "max_leaves_allowed": 5,  "is_carry_forward": 0, "carry_forward_balance": 0,  "applicable_after": 0,  "max_continuous_days_allowed": 2 },
+    "Leave Without Pay":      { "max_leaves_allowed": 0,  "is_carry_forward": 0, "carry_forward_balance": 0,  "applicable_after": 0,  "max_continuous_days_allowed": 365, "is_lwp": 1 }
+  }
+}

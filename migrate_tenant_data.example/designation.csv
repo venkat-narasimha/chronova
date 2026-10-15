@@ -1,0 +1,16 @@
+name,designation_name,description
+Professor,Professor,Senior academic faculty - Professor
+Associate Professor,Associate Professor,Senior academic faculty - Associate Professor
+Assistant Professor,Assistant Professor,Junior academic faculty - Assistant Professor
+Senior Resident,Senior Resident,Postgraduate trainee - Senior Resident
+Junior Resident,Junior Resident,Postgraduate trainee - Junior Resident
+Medical Officer,Medical Officer,Full-time clinical staff - Medical Officer
+Nursing Superintendent,Nursing Superintendent,Head of nursing services
+Staff Nurse,Staff Nurse,Frontline nursing staff
+Lab Technician,Lab Technician,Diagnostic laboratory technician
+Admin Officer,Admin Officer,General administration officer
+HR Manager,HR Manager,Head of Human Resources
+Finance Manager,Finance Manager,Head of Finance & Accounts
+IT Manager,IT Manager,Head of Information Technology
+Housekeeping Supervisor,Housekeeping Supervisor,Supervises housekeeping staff
+Security Supervisor,Security Supervisor,Supervises security staff

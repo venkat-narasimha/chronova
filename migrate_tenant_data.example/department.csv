@@ -1,0 +1,11 @@
+name,parent_department,company,is_group
+Medical College,All Departments,Greenwood Medical College & Hospital,1
+Pre-Clinical,Medical College,Greenwood Medical College & Hospital,1
+Para-Clinical,Medical College,Greenwood Medical College & Hospital,1
+Clinical,Medical College,Greenwood Medical College & Hospital,1
+Hospital,All Departments,Greenwood Medical College & Hospital,1
+Cardiology,Hospital,Greenwood Medical College & Hospital,0
+Orthopedics,Hospital,Greenwood Medical College & Hospital,0
+Nursing,Hospital,Greenwood Medical College & Hospital,0
+Administration,Hospital,Greenwood Medical College & Hospital,1
+HR,Administration,Greenwood Medical College & Hospital,0

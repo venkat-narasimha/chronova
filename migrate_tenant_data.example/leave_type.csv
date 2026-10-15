@@ -1,0 +1,10 @@
+name,max_leaves_allowed,applicable_after,is_carry_forward,carry_forward_balance,max_continuous_days_allowed,is_pro_rata,is_lwp,include_holiday,is_optional,color
+Privilege Leave,24,0,1,12,30,1,0,0,0,#4286f4
+Casual Leave,12,0,0,0,6,1,0,1,0,#e67e22
+Sick Leave,12,0,1,6,12,1,0,0,0,#e74c3c
+Earned Leave,30,0,1,30,60,1,0,0,0,#27ae60
+Maternity Leave,180,0,0,0,180,0,0,0,0,#9b59b6
+Paternity Leave,15,0,0,0,15,0,0,0,0,#34495e
+Study Leave,10,365,0,0,10,0,0,0,0,#16a085
+Compensatory Off,5,0,0,0,2,1,0,0,0,#f39c12
+Leave Without Pay,0,0,0,0,365,0,1,0,0,#7f8c8d

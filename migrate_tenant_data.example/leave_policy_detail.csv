@@ -1,0 +1,10 @@
+leave_policy,leave_type,max_leaves_allowed,annual_allocation
+GMCH Standard Leave Policy,Privilege Leave,24,24
+GMCH Standard Leave Policy,Casual Leave,12,12
+GMCH Standard Leave Policy,Sick Leave,12,12
+GMCH Standard Leave Policy,Earned Leave,30,30
+GMCH Standard Leave Policy,Maternity Leave,180,180
+GMCH Standard Leave Policy,Paternity Leave,15,15
+GMCH Standard Leave Policy,Study Leave,10,10
+GMCH Standard Leave Policy,Compensatory Off,5,5
+GMCH Standard Leave Policy,Leave Without Pay,0,0

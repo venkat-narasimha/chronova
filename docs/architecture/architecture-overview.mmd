@@ -1,0 +1,165 @@
+%% College HR Foundation — Single-Page Architecture Overview
+%% Self-contained Mermaid (GitHub-renderable, no external refs)
+%% Audience: Sales decks, Notion pages, partner intros
+%% Last updated: 2026-10-15
+
+graph TB
+    %% ============================================================
+    %% LEGEND
+    %% ============================================================
+    subgraph Legend[" "]
+        L1["🟦 Frappe HR stock<br/>(free with HRMS v16.5.0)"]:::stock
+        L2["🟪 Custom app layer<br/>(reusable across clients)"]:::app
+        L3["🟧 Per-tenant config<br/>(college-specific data)"]:::config
+        L4["🟩 Tenant<br/>(one college = one tenant)"]:::tenant
+        L5["🟨 User (browser)"]:::user
+        L1 ~~~ L2 ~~~ L3 ~~~ L4 ~~~ L5
+    end
+
+    %% ============================================================
+    %% LAYER 1 — Frappe HR (stock, free)
+    %% ============================================================
+    subgraph HRStock["Frappe HR — 5 stock modules (HRMS v16.5.0)"]
+        direction TB
+        M1["1. Organization Mgmt<br/>Employee · Department · Designation<br/>Employment Type · Employee Grade · Branch"]:::stock
+        M2["2. Employee Lifecycle<br/>Onboarding · Transfers · Exits · Appraisals"]:::stock
+        M3["3. Shift Management<br/>Shift Type · Shift Schedule · Shift Request<br/>Shift Assignment · Shift Schedule Assignment<br/>Employee Checkin · Roster"]:::stock
+        M4["4. Attendance<br/>Attendance · Auto Attendance<br/>Mark Attendance Tool"]:::stock
+        M5["5. Leave Management<br/>Leave Type · Leave Policy · Leave Allocation<br/>Leave Application · Leave Ledger Entry<br/>Leave Block List · Holiday List"]:::stock
+    end
+
+    %% ============================================================
+    %% LAYER 2 — College HR Foundation (custom app, reusable)
+    %% ============================================================
+    subgraph CHRF["College HR Foundation — custom app (reusable)"]
+        direction TB
+
+        subgraph ReusableCF["Reusable Custom Fields (78 fields · 23 DocTypes)"]
+            CF1["Employee CFs (20):<br/>leave_approver · shift_request_approver<br/>default_shift · employment_type · grade<br/>PAN · IFSC · MICR · health_insurance"]:::app
+            CF2["Department CFs (8):<br/>leave_approvers (table)<br/>shift_request_approver (table)<br/>expense_approvers · payroll_cost_center"]:::app
+            CF3["Shift Type CFs (2):<br/>is_oncall · is_emergency"]:::app
+            CF4["Attendance CFs (3):<br/>late_entry_by · early_out_by · is_wfh"]:::app
+            CF5["Employee Checkin CF (1):<br/>is_off"]:::app
+            CF6["Designation CFs (3):<br/>appraisal_template · skills (table)"]:::app
+            CF7["Company CFs (11):<br/>payroll accounts · HRA components"]:::app
+        end
+
+        subgraph MinorUI["Minor UI tweaks — 189 Property Setters<br/>(group: form visibility & print)"]
+            UI1["hidden = 133<br/>(hide stock fields from forms)"]:::app
+            UI2["print_hide = 28<br/>(clean print/PDF output)"]:::app
+            UI3["default / reqd / options / read_only = 28<br/>(minor stock-field overrides)"]:::app
+        end
+
+        subgraph RolesWF["Roles · Workflows · Notifications · Workspaces"]
+            R1["6 Role Profiles:<br/>System Manager · HR Manager · HR User<br/>Roster Manager · Leave Approver · Employee"]:::app
+            R2["858 Role Permission values<br/>(6 roles × 11 in-scope DocTypes)"]:::app
+            R3["2 Workflows:<br/>Leave Application (5 states)<br/>Shift Request (5 states)"]:::app
+            R4["8 Notifications (workflow + system)"]:::app
+            R5["6 Workspaces (one per role)<br/>with cards, charts, quick actions"]:::app
+        end
+
+        subgraph ReusableScripts["Reusable automation (Haritha-origin → generalizable)"]
+            S1["HRMS Health Alert DocType<br/>+ HRMS Health Monitor Server Script (hourly)"]:::app
+            S2["Server Script:<br/>Provision User on Employee Activate"]:::app
+            S3["Server Script:<br/>Enforce 90-Day Password Expiry"]:::app
+            S4["Master-data migration script<br/>(16 DocTypes, idempotent)"]:::app
+            S5["Custom role: Roster Manager<br/>(created from scratch — not stock)"]:::app
+        end
+
+        subgraph HarithaSpecific["Haritha-specific (NOT in foundation)"]
+            H1["Hospital-only fields:<br/>is_emergency (ER/code-blue)"]:::warn
+            H2["Print Formats tied to<br/>Haritha letterhead"]:::warn
+            H3["On-call rosters, code-blue"]:::warn
+        end
+    end
+
+    %% ============================================================
+    %% LAYER 3 — Per-tenant config (in tenant_config.json + docs)
+    %% ============================================================
+    subgraph TenantConfig["Per-tenant config — captured in tenant_config.json"]
+        direction LR
+        TC1["Company + branches + cost centers"]:::config
+        TC2["Org chart: 39 depts, 49 designations"]:::config
+        TC3["Shift patterns + Holiday List"]:::config
+        TC4["Leave types + Leave Policy"]:::config
+        TC5["Biometric device mapping"]:::config
+        TC6["Approver routing rules<br/>(leave_approver per Employee)"]:::config
+    end
+
+    %% ============================================================
+    %% LAYER 4 — Tenants (one column per college)
+    %% ============================================================
+    subgraph Tenants["Tenants — shared DB, isolated by `company` field"]
+        direction TB
+        subgraph THaritha["Tenant 1: Haritha Hospitals (reference deploy)"]
+            TH1["210 employees · 25 shifts<br/>8,118 shift assignments · 6 RBAC roles live"]:::tenant
+        end
+        subgraph TClientA["Tenant 2: Client A (e.g. ABC Engineering College)"]
+            TA1["~150 staff · 12 shifts · 4 depts<br/>tenure-track + non-teaching split"]:::tenant
+        end
+        subgraph TClientB["Tenant 3: Client B (e.g. XYZ Arts & Science)"]
+            TB1["~80 staff · 8 shifts · 6 depts<br/>academic calendar + vacation cycles"]:::tenant
+        end
+        subgraph TClientN["Tenant N: future client (e.g. DEF Medical College)"]
+            TN1["Faculty + residents + nurses<br/>3-shift rotations + on-call"]:::tenant
+        end
+    end
+
+    %% ============================================================
+    %% USERS (end of chain)
+    %% ============================================================
+    subgraph Users["End users (per tenant)"]
+        U1[HR Head]:::user
+        U2[Roster Manager / HoD]:::user
+        U3[Leave Approver]:::user
+        U4[Employee / Faculty]:::user
+        U5[System Manager<br/>(tenant admin)]:::user
+    end
+
+    %% ============================================================
+    %% EDGES — data flow
+    %% ============================================================
+    M1 --> CF1
+    M1 --> CF2
+    M1 --> CF6
+    M1 --> CF7
+    M3 --> CF3
+    M4 --> CF4
+    M4 --> CF5
+
+    CF1 --> R1
+    CF1 --> R2
+    CF3 --> R3
+    CF5 --> R3
+    R1 --> R5
+    R2 --> R5
+    R3 --> R4
+
+    ReusableCF --> MinorUI
+    MinorUI --> RolesWF
+    RolesWF --> ReusableScripts
+    ReusableScripts -. Hospital-only bits excluded .-> HarithaSpecific
+
+    ReusableCF --> TenantConfig
+    RolesWF --> TenantConfig
+    ReusableScripts --> TenantConfig
+
+    TenantConfig --> THaritha
+    TenantConfig --> TClientA
+    TenantConfig --> TClientB
+    TenantConfig --> TClientN
+
+    THaritha --> U1 & U2 & U3 & U4 & U5
+    TClientA --> U1 & U2 & U3 & U4 & U5
+    TClientB --> U1 & U2 & U3 & U4 & U5
+    TClientN --> U1 & U2 & U3 & U4 & U5
+
+    %% ============================================================
+    %% STYLES
+    %% ============================================================
+    classDef stock fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#0d47a1;
+    classDef app fill:#e1bee7,stroke:#6a1b9a,stroke-width:2px,color:#4a148c;
+    classDef config fill:#ffe0b2,stroke:#e65100,stroke-width:2px,color:#bf360c;
+    classDef tenant fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20;
+    classDef user fill:#fff9c4,stroke:#f9a825,stroke-width:2px,color:#f57f17;
+    classDef warn fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#b71c1c,stroke-dasharray: 5 5;
