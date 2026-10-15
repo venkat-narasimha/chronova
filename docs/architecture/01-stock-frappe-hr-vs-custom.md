@@ -2,7 +2,6 @@
 
 **Audience:** Venkat (founder/operator), prospective college clients, new engineers joining the team.
 **Goal:** Make it obvious which 274 customizations are reusable across every college, which are Haritha-specific, and which need per-client configuration.
-**Status:** ✅ First draft (2026-10-15) — based on `haritha_hospital` custom app fixtures (78 CF + 189 PS + 6 N + 2 LH + 3 PF) and Phase A–D design artifacts.
 **Next step:** Audit `pberpprod` Custom Field / Property Setter fixtures and reconcile the "182 vs 189 vs 274" count discrepancies (see [Data gaps](#data-gaps)).
 
 ---

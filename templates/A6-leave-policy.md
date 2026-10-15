@@ -1,10 +1,5 @@
 # A6 — Leave Policy Intake
 
-**Date:** 2026-10-15
-**Version:** v1.0
-**Status:** ✅ Ready for prospect use
-**Owner:** Venkat Narasimha (Chronova)
-**Format:** Google Form OR Excel upload (CSV schema embedded below)
 ---
 
 ## What This Is
@@ -307,8 +302,6 @@ By signing below, the signatory confirms that the leave policy described in this
 | Legal / Compliance Officer (optional) | | | |
 
 **Form version:** v1.0 (2026-10-15)
-**Status:** ✅ Ready for prospect use
-**Owner:** Venkat Narasimha, Chronova
 
 ---
 

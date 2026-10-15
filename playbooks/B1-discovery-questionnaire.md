@@ -2,12 +2,7 @@
 
 **Document Code:** B1
 **Document Name:** Discovery Meeting Playbook — 4-Phase Consultant Script
-**Date:** 2026-10-15
-**Version:** v1.0
-**Status:** ✅ Ready for consultant use
-**Owner:** Venkat Narasimha (Chronova)
 **Audience:** Venkat + any sales consultant who runs the first prospect meeting
-**Format:** This is an INTERNAL playbook, NOT sent to the prospect. The forms it references ([[A1-org-profile]], [[A6-leave-policy]], [[A7-approval-matrix]]) are what the prospect sees.
 **Total meeting duration:** 2h 15min (default); compressible to 1h 30min for smaller prospects
 ---
 
@@ -431,8 +426,6 @@ This is an internal playbook. Sign-off indicates the consultant has read, unders
 | Pre-Sales Engineer (if applicable) | | | |
 
 **Document version:** v1.0 (2026-10-15)
-**Status:** ✅ Ready for consultant use
-**Owner:** Venkat Narasimha, Chronova
 
 ---
 
