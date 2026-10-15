@@ -57,7 +57,7 @@ The folder name (`<client-slug>`) should be:
 Copy the example and edit for the client:
 
 ```bash
-cp migrate_tenant_data.example/tenant_config.json data/<client-slug>/tenant_config.json
+cp scripts/example/tenant_config.json data/<client-slug>/tenant_config.json
 ```
 
 **Edit these fields:**
@@ -86,7 +86,7 @@ that the script expects:
 
 | Source template | Output CSV(s) | Schema |
 |-----------------|---------------|--------|
-| A1 — Employee master | `employee.csv` (and optionally `department.csv`, `designation.csv`, `gender.csv`, `employment_type.csv`) | see `migrate_tenant_data.example/README.md` |
+| A1 — Employee master | `employee.csv` (and optionally `department.csv`, `designation.csv`, `gender.csv`, `employment_type.csv`) | see `scripts/example/README.md` |
 | A6 — Shift/Leave | `shift_type.csv`, `leave_type.csv`, `leave_policy.csv`, `leave_policy_detail.csv` | same |
 | A7 — Holiday calendar | `holiday_list.csv`, `holidays.csv` | same |
 
@@ -159,7 +159,7 @@ the specific line and Frappe's full error.
 | `MANDATORY_VALUE_MISSING: gender` | Employee row missing `gender` column | Add `gender` to employee.csv (or include `gender.csv`) |
 | `PARENT_NOT_FOUND: All Departments` | department.csv has a row whose `parent_department` was misspelled | Fix the spelling; root should be `tenant_config.department_root` |
 | `ValidationError: ... does not have a valid 'doctype'` | CSV row has a column named `doctype` (reserved) | Rename the column |
-| Column not found errors | Header typo or extra spaces | `head -1 employee.csv` and compare to `migrate_tenant_data.example/README.md` |
+| Column not found errors | Header typo or extra spaces | `head -1 employee.csv` and compare to `scripts/example/README.md` |
 
 Re-run dry-run after each fix. Once `fail=0` for every DocType, proceed.
 

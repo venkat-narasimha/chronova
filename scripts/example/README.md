@@ -281,15 +281,15 @@ by the script because the helper DocType is out of scope.
 ```bash
 # Dry run (validate + report only)
 python migrate_tenant_data.py \
-    --tenant-config migrate_tenant_data.example/tenant_config.json \
-    --data-dir      migrate_tenant_data.example/ \
+    --tenant-config scripts/example/tenant_config.json \
+    --data-dir      scripts/example/ \
     --site          <your-site-name> \
     --dry-run
 
 # Live run (insert/update)
 python migrate_tenant_data.py \
-    --tenant-config migrate_tenant_data.example/tenant_config.json \
-    --data-dir      migrate_tenant_data.example/ \
+    --tenant-config scripts/example/tenant_config.json \
+    --data-dir      scripts/example/ \
     --site          <your-site-name>
 ```
 
