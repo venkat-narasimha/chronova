@@ -5,7 +5,7 @@
 **Date:** 2026-10-15
 **Version:** v1.0
 **Status:** ✅ Ready for consultant use
-**Owner:** Venkat Narasimha (College HR Foundation)
+**Owner:** Venkat Narasimha (Chronova)
 **Audience:** Venkat + any sales consultant who runs the first prospect meeting
 **Format:** This is an INTERNAL playbook, NOT sent to the prospect. The forms it references ([[A1-org-profile]], [[A6-leave-policy]], [[A7-approval-matrix]]) are what the prospect sees.
 **Total meeting duration:** 2h 15min (default); compressible to 1h 30min for smaller prospects
@@ -13,7 +13,7 @@
 
 ## What This Is
 
-This is the **internal script** Venkat (or any consultant at College HR Foundation) uses to run the **first structured meeting with a prospect** — the conversation that determines whether the engagement is worth pursuing and lays the foundation for the Statement of Work.
+This is the **internal script** Venkat (or any consultant at Chronova) uses to run the **first structured meeting with a prospect** — the conversation that determines whether the engagement is worth pursuing and lays the foundation for the Statement of Work.
 
 The playbook is organised as **4 phases with time-boxes**, mirroring how a senior HR consultant at a Big-4 firm (Deloitte / KPMG / PwC / EY) would structure a discovery interview: open context first, drill into structured intake next, then technical fit, then commercial viability. Each phase has its own conversation goals, sample questions, listen-for cues, and notes fields.
 
@@ -25,7 +25,7 @@ The playbook also includes:
 
 ## Who Uses It
 
-- **Primary user:** Venkat Narasimha (Founder, College HR Foundation)
+- **Primary user:** Venkat Narasimha (Founder, Chronova)
 - **Secondary user:** Any sales / pre-sales consultant brought on to scale the sales process
 - **NOT shared with:** The prospect, the prospect's employees, or any external party
 
@@ -178,7 +178,7 @@ Walk through the 10 document types. The most common refinement: the prospect's c
 | # | Question | Listen for | Our positioning |
 |---|----------|-----------|------------------|
 | 1 | "What's your current IT stack? Servers, cloud, OS?" | On-premise vs cloud vs hybrid | If on-premise legacy, hosted Frappe Cloud saves IT time |
-| 2 | "Do you have a dedicated IT team for HR systems?" | If < 2, expect capacity gap | We can supplement with College HR Foundation managed service |
+| 2 | "Do you have a dedicated IT team for HR systems?" | If < 2, expect capacity gap | We can supplement with Chronova managed service |
 | 3 | "What does your email infrastructure look like? Google Workspace / Microsoft 365?" | Determines email-notification delivery | Frappe HR integrates with both via SMTP / OAuth |
 | 4 | "Do you have Active Directory or any SSO?" | Determines user provisioning | Frappe HR supports LDAP / SAML / OAuth |
 | 5 | "Internet uptime — last 30 days?" | If < 95%, hosted is risky | Recommend on-premise for low-uptime prospects |
@@ -278,7 +278,7 @@ The consultant **transcribes** the notes into a Google Doc within 4 hours of mee
 | # | Good sign | Why it matters | What to do |
 |---|-----------|----------------|------------|
 | 1 | **A specific "why now" trigger** (audit finding, regulator deadline, board directive) | They have urgency; not just "exploring" | Fast-track to SOW within 5 working days |
-| 2 | **A named, empowered project owner from their side** | Reduces our project risk; we have a counter-partner | Offer them a free 30-min onboarding to College HR Foundation's project methodology |
+| 2 | **A named, empowered project owner from their side** | Reduces our project risk; we have a counter-partner | Offer them a free 30-min onboarding to Chronova's project methodology |
 | 3 | **They've already defined what success looks like** | Mature procurement; clearer SOW | Use their success criteria as the SOW acceptance criteria |
 | 4 | **They're open to phased rollout** | Reduces risk for both sides | Propose Phase 1 = core HR + leave, Phase 2 = payroll + attendance |
 | 5 | **Their pain is specific and quantified** (e.g., "20 leave disputes per quarter, average 5 days resolution time") | Quantifiable = we can target and measure improvement | Use the numbers in the SOW as "before / after" targets |
@@ -356,7 +356,7 @@ Print and tick before every meeting:
 ## 9. Follow-Up Email Template (send within 24 hours)
 
 ```
-Subject: Thank you for the discovery meeting — [Institution Name] + College HR Foundation
+Subject: Thank you for the discovery meeting — [Institution Name] + Chronova
 
 Dear [HR Lead Name],
 
@@ -366,7 +366,7 @@ landscape you operate in, and the goals you have for the next 12-24
 months.
 
 Based on our conversation, here's my understanding of your priorities
-and how College HR Foundation can help:
+and how Chronova can help:
 
 1. [Top priority 1 — e.g., "Automate leave application and balance
    visibility for 200+ employees"] — Frappe HR + custom self-service
@@ -402,7 +402,7 @@ I'm attaching:
 - The completed [[A1-org-profile]] (as captured today)
 - The completed [[A6-leave-policy]] (as captured today)
 - The completed [[A7-approval-matrix]] (as captured today)
-- A 2-page College HR Foundation case study of [similar institution]
+- A 2-page Chronova case study of [similar institution]
 - A 1-page reference architecture diagram
 
 Please review and let me know if anything is missing or needs
@@ -412,7 +412,7 @@ Looking forward to working together.
 
 Best regards,
 Venkat Narasimha
-Founder, College HR Foundation
+Founder, Chronova
 +91 [phone] | venkat@collegehrfoundation.com
 https://www.collegehrfoundation.com
 ```
@@ -432,7 +432,7 @@ This is an internal playbook. Sign-off indicates the consultant has read, unders
 
 **Document version:** v1.0 (2026-10-15)
 **Status:** ✅ Ready for consultant use
-**Owner:** Venkat Narasimha, College HR Foundation
+**Owner:** Venkat Narasimha, Chronova
 
 ---
 

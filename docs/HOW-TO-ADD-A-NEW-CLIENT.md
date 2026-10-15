@@ -272,7 +272,7 @@ inserting Accounting data.
 **Cause:** `Accounts Receivable`, `Accounts Payable`, `Cash In Hand`
 etc. are system-managed root nodes — never re-create.
 
-**Fix:** Out of scope for the college HR foundation. If you need to
+**Fix:** Out of scope for the Chronova. If you need to
 extend with accounting migration:
 ```python
 # In your custom _migrate_account function:
@@ -394,7 +394,7 @@ that doesn't exist on the target site.
    present) BEFORE Shift Assignment.
 
 **Note:** `shift_schedule_assignment` is always NULL'd by the script
-(it's a helper DocType out of scope for the college HR foundation).
+(it's a helper DocType out of scope for the Chronova).
 
 ---
 

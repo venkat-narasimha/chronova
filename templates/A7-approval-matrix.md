@@ -5,7 +5,7 @@
 **Date:** 2026-10-15
 **Version:** v1.0
 **Status:** ✅ Ready for prospect use
-**Owner:** Venkat Narasimha (College HR Foundation)
+**Owner:** Venkat Narasimha (Chronova)
 **Time to complete:** 25–35 minutes
 **Format:** Google Form OR Excel upload (CSV schema embedded below)
 **Companion forms:** A1 (Org Profile), A6 (Leave Policy)
@@ -13,7 +13,7 @@
 
 ## What This Is
 
-This is the **approval matrix intake form** College HR Foundation uses to define **who approves what** in the prospect's Frappe HR instance. It captures the **10 standard document types** that drive day-to-day HR operations in a college / hospital — from leave applications to resignation acceptances — and for each one defines the **approver hierarchy** (L1 → L2 → L3 → Final authority), the **amount or day threshold** that triggers escalation, and the **role-based approver names** (not person names — person names go in A1 §2.4).
+This is the **approval matrix intake form** Chronova uses to define **who approves what** in the prospect's Frappe HR instance. It captures the **10 standard document types** that drive day-to-day HR operations in a college / hospital — from leave applications to resignation acceptances — and for each one defines the **approver hierarchy** (L1 → L2 → L3 → Final authority), the **amount or day threshold** that triggers escalation, and the **role-based approver names** (not person names — person names go in A1 §2.4).
 
 The form's output drives Frappe HR's **Workflow DocType** (one workflow per document type) and the **Employee / Department leave_approvers child table** that auto-routes approvals based on the applicant's reporting line.
 
@@ -329,7 +329,7 @@ institution_name,institution_type,total_doc_types,L1_chain,L2_chain,L3_chain,L4_
 
 ## 5. Sign-off
 
-By signing below, the signatory confirms that the approval hierarchy described in this form reflects the institution's current delegation of authority, that the monetary thresholds are authorised by the Board / Chairman, and that the institution authorises College HR Foundation to encode these workflows in Frappe HR.
+By signing below, the signatory confirms that the approval hierarchy described in this form reflects the institution's current delegation of authority, that the monetary thresholds are authorised by the Board / Chairman, and that the institution authorises Chronova to encode these workflows in Frappe HR.
 
 | Role | Name | Signature | Date |
 |------|------|-----------|------|
@@ -340,7 +340,7 @@ By signing below, the signatory confirms that the approval hierarchy described i
 
 **Form version:** v1.0 (2026-10-15)
 **Status:** ✅ Ready for prospect use
-**Owner:** Venkat Narasimha, College HR Foundation
+**Owner:** Venkat Narasimha, Chronova
 
 ---
 

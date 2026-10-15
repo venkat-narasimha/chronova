@@ -9,7 +9,7 @@
 
 ## What this is
 
-This doc is the **single comparison view** that answers the question Venkat keeps asking: *"Out of everything we built for Haritha Hospitals, what did Frappe HR give us for free, what did we actually build, and what can we reuse for any college?"* It is the input to the "College HR Foundation" SaaS product — the SaaS layer must keep only the reusable parts and push the Haritha-specific parts out to per-tenant config.
+This doc is the **single comparison view** that answers the question Venkat keeps asking: *"Out of everything we built for Haritha Hospitals, what did Frappe HR give us for free, what did we actually build, and what can we reuse for any college?"* It is the input to the "Chronova" SaaS product — the SaaS layer must keep only the reusable parts and push the Haritha-specific parts out to per-tenant config.
 
 ## Who reads it
 
@@ -90,7 +90,7 @@ Frappe HR (HRMS v16.5.0) ships with **5 core modules out of the box**: **(1) Org
 | 44 | Print Format (Haritha letterhead) | Stock | 3 Haritha Print Formats (Salary Slip, Leave Application, Experience Letter) — letterhead-embedded | ❌ Per-client | ❌ Haritha-specific (letterhead, hospital branding) |
 | 45 | Letter Head | Stock | 2 Haritha letterheads | ❌ Per-client | ❌ Haritha-specific |
 | **Knowledge & docs (in custom app)** | | | | | |
-| 46 | Migration runbook | None | `HARITHA_HOSPITALS_GUIDE.md` (543 lines) + `docs/handbook/*` (~14,030 lines) | ✅ Yes — repurpose as College HR Foundation docs | — |
+| 46 | Migration runbook | None | `HARITHA_HOSPITALS_GUIDE.md` (543 lines) + `docs/handbook/*` (~14,030 lines) | ✅ Yes — repurpose as Chronova docs | — |
 | 47 | Custom image | None | `frappe/custom_apps:version-16` (HRMS + haritha_hospital baked into a custom Docker image — Lesson Aug-29) | ✅ Yes (rebake per release) | — |
 
 ---
@@ -101,10 +101,10 @@ This is the **bottom-line view** Venkat needs for the SaaS product. Numbers veri
 
 | Bucket | Count | % of customizations | Lives in | What it means for the SaaS |
 |---|---:|---:|---|---|
-| **Reusable across all colleges** (Foundation) | ~78 (78 CF) + 189 PS + 1 DocType + 1 custom role + 2 workflows + 8 notifications + 6 role profiles + 2 server scripts + 1 health monitor | **~280 of 282 (~99%)** | `college_hr_foundation` app — ships to every tenant | The SaaS "core" — install once per site, no per-tenant code work |
+| **Reusable across all colleges** (Foundation) | ~78 (78 CF) + 189 PS + 1 DocType + 1 custom role + 2 workflows + 8 notifications + 6 role profiles + 2 server scripts + 1 health monitor | **~280 of 282 (~99%)** | `chronova` app — ships to every tenant | The SaaS "core" — install once per site, no per-tenant code work |
 | **Per-tenant config** (data, not code) | N/A (data only) | — | `tenant_config.json` + CSV masters | Department list, shift patterns, holiday list, approver mapping, biometric devices, leave types — captured during Discovery phase, applied per tenant |
 | **Haritha-specific** (NOT in Foundation) | 1 CF (`is_emergency`) + 2 letterheads + 3 print formats + Haritha role-profile prefix | **~6 of 282 (~2%)** | Haritha-only — stays in Haritha app, never ships to colleges | Hospital-only concepts (ER/code-blue, hospital letterhead). The SaaS app excludes these by design. |
-| **Reusable + per-tenant opt-in** | 1 CF (`is_oncall`) + HRMS Health Alert doc + provisioning script | **~3 of 282 (~1%)** | `college_hr_foundation` — enabled via tenant_config flag | Generic features, but each college decides if it wants them (e.g. on-call tracking, health monitoring strictness) |
+| **Reusable + per-tenant opt-in** | 1 CF (`is_oncall`) + HRMS Health Alert doc + provisioning script | **~3 of 282 (~1%)** | `chronova` — enabled via tenant_config flag | Generic features, but each college decides if it wants them (e.g. on-call tracking, health monitoring strictness) |
 | **TOTAL (fixtures exported)** | **282 rows** (78 CF + 189 PS + 8 N + 3 PF + 2 LH + 2 misc) — see [Data gaps](#data-gaps) | 100% | — | — |
 
 **The headline:** of 282 fixture rows, **~99% is reusable across colleges**; only **~2% is Haritha-specific** (hospital letterhead + the ER/code-blue flag). The per-tenant variation lives in **data, not code** — that's the entire SaaS thesis.
@@ -137,11 +137,11 @@ This is the **bottom-line view** Venkat needs for the SaaS product. Numbers veri
 ## Next steps
 
 1. **Reconcile the 78 / 189 / 274 / 282 count drift** — produce a single authoritative table in `01.1-schema-reference.md` (open PR, Venkat to review).
-2. **Decide the `college_hr_foundation` app name** — `haritha_hospital` is misspelled in 2 ways (`haritta_hospital` internal / `haritha_hospital` dir) per MEMORY §"2026-08-29 milestone". Pick one spelling for the new app.
-3. **Audit & extract the reusable customizations** into a new `college_hr_foundation` repo (fork of `haritha_hospital`, minus the 6 Haritha-specific rows). Estimated 2–3 days.
+2. **Decide the `chronova` app name** — `haritha_hospital` is misspelled in 2 ways (`haritta_hospital` internal / `haritha_hospital` dir) per MEMORY §"2026-08-29 milestone". Pick one spelling for the new app.
+3. **Audit & extract the reusable customizations** into a new `chronova` repo (fork of `haritha_hospital`, minus the 6 Haritha-specific rows). Estimated 2–3 days.
 4. **Rewrite the 6 Role Profile names** — drop the `Haritha:` prefix → `College HR:` (or tenant-neutral like `CHRF: HR Manager`).
 5. **Build `tenant_seed.py`** — the SaaS equivalent of `migrate_master_data.py`: takes `tenant_config.json` + CSV masters, creates per-tenant data idempotently.
-6. **Validate on second tenant** — install `college_hr_foundation` on a fresh test site, seed with a fictional college's data, confirm 6 roles + 2 workflows + 8 notifications all wire up correctly.
+6. **Validate on second tenant** — install `chronova` on a fresh test site, seed with a fictional college's data, confirm 6 roles + 2 workflows + 8 notifications all wire up correctly.
 
 ---
 

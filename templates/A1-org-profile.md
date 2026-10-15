@@ -5,14 +5,14 @@
 **Date:** 2026-10-15
 **Version:** v1.0
 **Status:** ✅ Ready for prospect use
-**Owner:** Venkat Narasimha (College HR Foundation)
+**Owner:** Venkat Narasimha (Chronova)
 **Time to complete:** 25–40 minutes
 **Format:** Google Form OR Excel upload (CSV schema embedded below)
 ---
 
 ## What This Is
 
-This is the **first intake form** College HR Foundation sends to every prospect **after the discovery meeting, before signing the Statement of Work**. It captures the institutional facts we need to provision a Frappe HR instance that matches the college's structure on Day 1.
+This is the **first intake form** Chronova sends to every prospect **after the discovery meeting, before signing the Statement of Work**. It captures the institutional facts we need to provision a Frappe HR instance that matches the college's structure on Day 1.
 
 The form has two halves: (a) institutional / academic profile (what kind of college you are, who regulates you, what you teach), and (b) HR / operational profile (how many people you employ, how you run payroll, who your decision-makers are, when you want to go live). Every field maps to a downstream configuration decision in Frappe HR.
 
@@ -198,7 +198,7 @@ legal_name,display_name,institution_type,year_established,trust_name,pan,gstin,r
 
 ## 5. Sign-off
 
-By signing below, the signatory confirms that the information provided in this form is accurate to the best of their knowledge, and authorises College HR Foundation to use this information for the purpose of drafting a Statement of Work and provisioning a Frappe HR instance.
+By signing below, the signatory confirms that the information provided in this form is accurate to the best of their knowledge, and authorises Chronova to use this information for the purpose of drafting a Statement of Work and provisioning a Frappe HR instance.
 
 | Role | Name | Signature | Date |
 |------|------|-----------|------|
@@ -209,7 +209,7 @@ By signing below, the signatory confirms that the information provided in this f
 
 **Form version:** v1.0 (2026-10-15)
 **Status:** ✅ Ready for prospect use
-**Owner:** Venkat Narasimha, College HR Foundation
+**Owner:** Venkat Narasimha, Chronova
 
 ---
 

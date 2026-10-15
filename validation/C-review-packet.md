@@ -1,7 +1,7 @@
 # C — Architecture Review Packet (1-hour working session)
 
 **Date:** 2026-10-15
-**For:** Venkat Narasimha (Founder, College HR Foundation)
+**For:** Venkat Narasimha (Founder, Chronova)
 **Goal:** Run a focused 1-hour working session to lock the open architectural decisions before first pilot college.
 **Format:** Print this page. Bring it + a pen.
 
@@ -33,8 +33,8 @@ For each: the question, the 2-3 options, and my (Agent 4) recommendation in **bo
 | # | Decision | Options | **Recommendation** | Why |
 |---|---|---|---|---|
 | **Q1** | **Tenancy model** | (a) Shared DB + `company` field (chosen in Doc 02) · (b) One DB per tenant · (c) One schema per tenant | **(a) — sign off on Doc 02's choice** | 6× cost advantage at scale; RBAC already scoped; revisit at 30+ tenants. **Just lock it.** |
-| **Q2** | **App name + spelling** | (a) `college_hr_foundation` · (b) `processbricks_hr` · (c) keep `haritha_hospital` (rebrand later) | **(a) `college_hr_foundation`** | Clearer for sales; matches product name. Decide now because role-profile prefix (`CHRF:` vs `Haritha:`) follows. |
-| **Q3** | **SaaS domain** | (a) `college-hr-foundation.com` · (b) `processbricks.io/hr` · (c) `chrf.in` | **(a) — clean, brandable, matches name** | Decide before Step 2.3 (role-profile prefix) and Step 2.7 (custom image tag). |
+| **Q2** | **App name + spelling** | (a) `chronova` · (b) `processbricks_hr` · (c) keep `haritha_hospital` (rebrand later) | **(a) `chronova`** | Clearer for sales; matches product name. Decide now because role-profile prefix (`CHRF:` vs `Haritha:`) follows. |
+| **Q3** | **SaaS domain** | (a) `chronova.com` · (b) `processbricks.io/hr` · (c) `chrf.in` | **(a) — clean, brandable, matches name** | Decide before Step 2.3 (role-profile prefix) and Step 2.7 (custom image tag). |
 | **Q4** | **First-pilot college** | (a) Friendly contact in network · (b) Wait for inbound RFP · (c) Self-pilot (fake data) | **(a) — pick a friendly contact** | Without a real pilot, all docs remain theoretical. The 6-10 week timeline is the proof. |
 | **Q5** | **SLA numbers** | (a) 99.5% uptime / 6h RPO / 24h RTO / IST business hours · (b) 99.9% / 1h RPO / 4h RTO / 24×7 · (c) Best-effort (no SLA) | **(a) for v1, escalate to (b) at 5+ tenants** | (b) costs 2× the SRE time. (c) loses enterprise deals. (a) is the realistic starting point. |
 | **Q6** | **`tenant_seed.py` ownership** | (a) Venkat writes it (he wrote Haritha's `migrate_master_data.py`) · (b) Hire a dev · (c) Outsource to Frappe partner | **(b) — hire a dev (50% time, 4 months)** | Venkat is the founder, not the dev. (a) is 4 months of his time. (c) is expensive and slow. |
@@ -62,8 +62,8 @@ These 7 questions must be answered for the architecture to be **pilot-ready** (i
 | # | Question | Answer (fill in during session) |
 |---|---|---|
 | Q1 | Tenancy: shared-DB with `company` field — **approve Doc 02's recommendation?** | YES / NO / DEFER |
-| Q2 | App name: `college_hr_foundation` — **approve?** | YES / NO (alt: ________) |
-| Q3 | SaaS domain: `college-hr-foundation.com` — **approve?** | YES / NO (alt: ________) |
+| Q2 | App name: `chronova` — **approve?** | YES / NO (alt: ________) |
+| Q3 | SaaS domain: `chronova.com` — **approve?** | YES / NO (alt: ________) |
 | Q4 | First pilot: **name the friendly contact + expected kickoff date** | Name: ________  Date: ________ |
 | Q5 | SLA numbers (v1): 99.5% uptime / 6h RPO / 24h RTO / IST business hours — **approve?** | YES / NO (alt: ________) |
 | Q6 | Dev resource: hire 50%-time dev for 4 months — **approve budget?** | YES / NO (alt: ________) |
@@ -88,13 +88,13 @@ These are tempting but **out of scope for the architecture review** — capture 
 A 3-line email is enough:
 
 ```
-Subject: College HR Foundation — architecture decisions (2026-10-15)
+Subject: Chronova — architecture decisions (2026-10-15)
 
 Dev,
 
 Architecture review done. Decisions:
 - Tenancy: shared-DB + company field (Doc 02 confirmed)
-- App name: college_hr_foundation (CHRF prefix)
+- App name: chronova (CHRF prefix)
 - Backup: mysqldump --where='company=...'
 
 You can start Step 2 of Doc 02's migration path. Ping me on

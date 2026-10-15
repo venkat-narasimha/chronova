@@ -9,7 +9,7 @@
 
 ## What this is
 
-This doc answers the question every new prospect asks: *"If I sign up for College HR Foundation, where does my data live? Who else can see it? What happens if another college churns?"* It defines the **tenant model** for the platform and documents the trade-off we made when choosing shared-DB vs. database-per-tenant.
+This doc answers the question every new prospect asks: *"If I sign up for Chronova, where does my data live? Who else can see it? What happens if another college churns?"* It defines the **tenant model** for the platform and documents the trade-off we made when choosing shared-DB vs. database-per-tenant.
 
 ## Who reads it
 
@@ -25,7 +25,7 @@ This doc answers the question every new prospect asks: *"If I sign up for Colleg
 
 ## Problem statement (one paragraph)
 
-The Haritha Hospitals deploy is a **single-tenant install** of the `haritha_hospital` custom app on a single MariaDB. That model is fine when you have one customer — but College HR Foundation is a **SaaS** where one codebase must serve **N colleges**, each with their own org chart, shifts, holiday list, approver chain, and (potentially) custom fields. The platform must isolate tenant data so a college never sees another college's employees, while still being cheap to operate (one MariaDB, one gunicorn pool, one set of workers) and easy to update (one `bench update` ships the new version to all tenants).
+The Haritha Hospitals deploy is a **single-tenant install** of the `haritha_hospital` custom app on a single MariaDB. That model is fine when you have one customer — but Chronova is a **SaaS** where one codebase must serve **N colleges**, each with their own org chart, shifts, holiday list, approver chain, and (potentially) custom fields. The platform must isolate tenant data so a college never sees another college's employees, while still being cheap to operate (one MariaDB, one gunicorn pool, one set of workers) and easy to update (one `bench update` ships the new version to all tenants).
 
 ---
 
@@ -34,7 +34,7 @@ The Haritha Hospitals deploy is a **single-tenant install** of the `haritha_hosp
 ```mermaid
 graph TB
     subgraph Code["Code base — one repo, one image"]
-        CHRF["college_hr_foundation app<br/>(fixtures/ + custom code)"]:::app
+        CHRF["chronova app<br/>(fixtures/ + custom code)"]:::app
         IMAGE["frappe/custom_apps:college-hr-v1<br/>(Frappe + ERPNext + HRMS + CHRF baked)"]:::infra
     end
 
@@ -139,7 +139,7 @@ flowchart LR
 
 | Layer | Lives in | Versioned in git? | Re-runnable? | Example |
 |---|---|---|---|---|
-| **App code** (custom fields, workflows, roles, server scripts) | `college_hr_foundation` app | ✅ | ✅ (`bench migrate`) | `apps/college_hr_foundation/fixtures/custom_field.json` |
+| **App code** (custom fields, workflows, roles, server scripts) | `chronova` app | ✅ | ✅ (`bench migrate`) | `apps/chronova/fixtures/custom_field.json` |
 | **Tenant config** (company name, branches, dept list, role-profile names) | `tenants/<tenant_slug>/tenant_config.json` | ✅ | ✅ (`tenant_seed.py`) | `tenants/haritha/tenant_config.json` |
 | **Tenant data** (employees, shift assignments, leave allocations) | `tenants/<tenant_slug>/masters/*.csv` | ✅ | ✅ (`migrate_master_data.py`) | `tenants/haritha/masters/employee.csv` |
 | **Runtime data** (live check-ins, attendance, leave ledger) | MariaDB (live, not in git) | ❌ | n/a | `tabEmployee Checkin` rows |
@@ -193,8 +193,8 @@ This is the **most important architectural call** for the SaaS. We chose **share
 ```mermaid
 flowchart LR
     S1["Step 1: TODAY<br/>haritha_hospital app<br/>1 tenant (Haritha)<br/>274 customizations"]:::now --> S2
-    S2["Step 2: 4-6 weeks<br/>college_hr_foundation app<br/>1 tenant (Haritha) +<br/>rebrand + cleanup"]:::next --> S3
-    S3["Step 3: 2-3 months<br/>college_hr_foundation SaaS<br/>N tenants · 1 code base<br/>tenant_seed.py + tenant_config.json"]:::saas
+    S2["Step 2: 4-6 weeks<br/>chronova app<br/>1 tenant (Haritha) +<br/>rebrand + cleanup"]:::next --> S3
+    S3["Step 3: 2-3 months<br/>chronova SaaS<br/>N tenants · 1 code base<br/>tenant_seed.py + tenant_config.json"]:::saas
 
     classDef now fill:#ffccbc,stroke:#bf360c,stroke-width:2px;
     classDef next fill:#fff9c4,stroke:#f9a825,stroke-width:2px;
@@ -209,16 +209,16 @@ flowchart LR
 - Migration script: `migrate_master_data.py` (16 DocTypes, idempotent).
 - Custom image: `frappe/custom_apps:version-16` (HRMS + haritha_hospital baked).
 
-### Step 2 — NEXT (4–6 weeks): extract the reusable parts → `college_hr_foundation` app
+### Step 2 — NEXT (4–6 weeks): extract the reusable parts → `chronova` app
 
 | Sub-step | Effort | Owner | Output |
 |---|---|---|---|
-| 2.1 — Fork `haritha_hospital` → new repo `college_hr_foundation` | 0.5 day | dev | New repo, no code change |
+| 2.1 — Fork `haritha_hospital` → new repo `chronova` | 0.5 day | dev | New repo, no code change |
 | 2.2 — Remove 6 Haritha-specific fixtures (`is_emergency` CF + 2 letterheads + 3 print formats + role-profile prefix) | 0.5 day | dev | 276 reusable fixtures |
 | 2.3 — Rename role profiles `Haritha:` → `CHRF:` (or `College HR:`) | 0.5 day | dev | Renamed 6 RPs |
 | 2.4 — Rewrite `migrate_master_data.py` → `tenant_seed.py` (takes `tenant_config.json` + `masters/*.csv`, idempotent, parameterized by tenant_slug) | 2 days | dev | Tenant-seed script |
 | 2.5 — Test on `pberpdev` with a fictional "Test College" data set | 1 day | dev + Venkat | Test report |
-| 2.6 — Re-install on `pberpprod` as a **rename + reinstall** (drop `haritha_hospital`, install `college_hr_foundation`, re-run `tenant_seed.py --tenant=haritha`) | 0.5 day | Venkat | Haritha on new app |
+| 2.6 — Re-install on `pberpprod` as a **rename + reinstall** (drop `haritha_hospital`, install `chronova`, re-run `tenant_seed.py --tenant=haritha`) | 0.5 day | Venkat | Haritha on new app |
 | 2.7 — Cut a tag `college-hr-v1.0.0` and rebuild custom image `frappe/custom_apps:college-hr-v1` | 0.5 day | dev | New image |
 
 ### Step 3 — 2–3 months: SaaS for colleges
@@ -251,7 +251,7 @@ flowchart LR
 ## Next steps
 
 1. **Sign-off on shared-DB decision** — Venkat to confirm before dev work starts in Step 2.
-2. **Decide the SaaS domain** — `college-hr-foundation.com`? `processbricks.io/hr`? Pick before Step 2.3 (role-profile prefix).
+2. **Decide the SaaS domain** — `chronova.com`? `processbricks.io/hr`? Pick before Step 2.3 (role-profile prefix).
 3. **Pick tenant-config schema** — what fields go in `tenant_config.json`? Draft from this doc, circulate to dev.
 4. **Build `tenant_seed.py`** — the runtime that turns config into DB rows.
 5. **Pilot college identification** — pick the first friendly college; schedule a Discovery call.
