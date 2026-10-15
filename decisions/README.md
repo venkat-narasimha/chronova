@@ -1,0 +1,3 @@
+# decisions/
+
+Working-session decision worksheets for Chronova architecture choices. Each file in this directory is a printable Q&A sheet Venkat fills in during a 1-hour session to lock a specific set of open decisions (tenancy model, app name, SaaS domain, pilot contact, SLA numbers, etc.). Files are dated and follow the naming pattern `ARCHITECTURE-DECISIONS-QA.md` (and similar). Once a decision is locked, the locked answer is also recorded in the relevant architecture doc under `docs/architecture/` so the dev can proceed without ambiguity. Add new worksheets here when a fresh batch of decisions needs Venkat's sign-off.
