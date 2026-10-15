@@ -1,0 +1,82 @@
+{
+  "_metadata": {
+    "_purpose": "Cloneable tenant-config skeleton for any new Chronova prospect. To use: copy this directory to data/<prospect-slug>/, edit values, then run migrate_tenant_data.py --tenant-config <path>. See README.md in this folder for the full onboarding flow.",
+    "_schema_version": "1.0",
+    "_locked": "2026-10-15",
+
+    "_architecture_decisions": {
+      "Q1_tenancy_model": {
+        "value": "shared_db_company_partition",
+        "field": "_metadata._architecture_decisions.Q1_tenancy_model.value",
+        "source": "decisions/ARCHITECTURE-DECISIONS-QA.md (Q1, Option A recommended, Venkat to confirm in working session)",
+        "notes": "Shared MariaDB with logical row-level partitioning by the `company` field. ~$60/mo at 20 tenants. HRMS treats `company` as a first-class field on Employee/Department/Shift Type/Leave Allocation/Attendance. Migrate to per-tenant DB only at ~30 tenants or on a physical-isolation demand."
+      },
+      "Q2_app_name": {
+        "value": "chronova",
+        "field": "_metadata._architecture_decisions.Q2_app_name.value",
+        "source": "decisions/ARCHITECTURE-DECISIONS-QA.md (Q2, RESOLVED 2026-10-15)",
+        "notes": "Python module name, Git remote, role-profile prefix all use `chronova`. Replacing the legacy `college-hr-foundation` and misspelled `haritha_hospital`. Locked; do not change per-prospect."
+      },
+      "Q3_saas_domain": {
+        "value": "chronova.in",
+        "field": "_metadata._architecture_decisions.Q3_saas_domain.value",
+        "source": "decisions/ARCHITECTURE-DECISIONS-QA.md (Q3, recommended, Venkat to buy in working session)",
+        "notes": "India-first TLD, cheapest, .in namespace less saturated. Fallback TLDs if .in is taken: chronova.com (~₹900-1500/yr) > chronova.app > chronova.co > chronova.io. Update this field AND any SSL/HTTPS config when changing the TLD."
+      },
+      "Q4_pilot_company": {
+        "value": "TODO",
+        "field": "_metadata._architecture_decisions.Q4_pilot_company.value",
+        "source": "decisions/ARCHITECTURE-DECISIONS-QA.md (Q4, OPEN, Venkat to name)",
+        "notes": "Set to the legal name of the first/pilot college once Venkat names it in the working session. This value travels through to all pilot-era communications (welcome email, SOW, case-study copy). For the second-and-later prospects, set to the prospect's own name (not literally a 'pilot') and update the notes."
+      }
+    },
+
+    "_placeholders": {
+      "_comment": "Strict JSON does not allow // inline comments. The fields below are empty strings or null by design — they MUST be filled by the consultant before running migrate_tenant_data.py. Search for the placeholder names to find them in this file.",
+      "company_name": "Required. Full legal name of the prospect's institution (must match `name` column in company.csv). Example: 'St. Mary's Engineering College'.",
+      "company_abbr": "Required. ≤5 chars, used in autoname series (e.g. HR-SHA-2026-11-00001). Example: 'SMEC'. Must also match `abbr` column in company.csv.",
+      "default_shift_location": "Optional. Human-readable campus label used if no shift_location.csv is provided. Example: 'Main Campus - Hyderabad'. Set to null if every shift is location-agnostic.",
+      "holidays_fiscal_year_label": "Cosmetic. Display string for the holiday list (e.g. 'FY 2027-28'). Leave as '' to auto-derive from fiscal_year_start_month.",
+      "fiscal_year_start_month": "If the prospect is NOT in India, change to 1 (Jan-start, US/EU) or 7 (Jul-start, AU). 4 = April (India FY).",
+      "timezone": "If the prospect is NOT in India, set the IANA tz (e.g. 'America/New_York', 'Europe/London').",
+      "default_currency": "ISO 4217. India = 'INR'. Other = 'USD' / 'EUR' / 'GBP' / 'AUD' etc.",
+      "approver_user": "Pre-seeded as the Department Approver for Shift Requests. Default 'Administrator' is fine for the first dry-run; replace with the prospect's HR head's Frappe user ID before live migration."
+    },
+
+    "_see_also": [
+      "migrate_tenant_data.example/README.md — concrete reference (Greenwood MCH, fictional)",
+      "migrate_tenant_data.example/tenant_config.json — the working example",
+      "decisions/ARCHITECTURE-DECISIONS-QA.md — Q1-Q4 worksheet",
+      "templates/A1-org-profile.md — org data collection template (drives company/department CSVs)",
+      "templates/A6-leave-policy.md — leave data collection template (drives leave_type/leave_policy CSVs)",
+      "templates/A7-approval-matrix.md — approver/role data collection template (drives approver_user and approver CSVs)"
+    ]
+  },
+
+  "company_name": "",
+  "company_abbr": "",
+
+  "country": "India",
+  "default_currency": "INR",
+  "fiscal_year_start_month": 4,
+  "timezone": "Asia/Kolkata",
+  "shift_naming_convention": "prompt",
+
+  "department_root": "All Departments",
+  "item_group_root": "All Item Groups",
+  "approver_user": "Administrator",
+  "default_shift_location": null,
+  "holidays_fiscal_year_label": "",
+
+  "leave_type_defaults": {
+    "Privilege Leave":  { "max_leaves_allowed": 24, "is_carry_forward": 1, "carry_forward_balance": 12, "applicable_after": 0,  "max_continuous_days_allowed": 30 },
+    "Casual Leave":     { "max_leaves_allowed": 12, "is_carry_forward": 0, "carry_forward_balance": 0,  "applicable_after": 0,  "max_continuous_days_allowed": 6 },
+    "Sick Leave":       { "max_leaves_allowed": 12, "is_carry_forward": 1, "carry_forward_balance": 6,  "applicable_after": 0,  "max_continuous_days_allowed": 12 },
+    "Earned Leave":     { "max_leaves_allowed": 30, "is_carry_forward": 1, "carry_forward_balance": 30, "applicable_after": 0,  "max_continuous_days_allowed": 60 },
+    "Maternity Leave":  { "max_leaves_allowed": 180,"is_carry_forward": 0, "carry_forward_balance": 0,  "applicable_after": 0,  "max_continuous_days_allowed": 180, "is_pro_rata": 0 },
+    "Paternity Leave":  { "max_leaves_allowed": 15, "is_carry_forward": 0, "carry_forward_balance": 0,  "applicable_after": 0,  "max_continuous_days_allowed": 15 },
+    "Study Leave":      { "max_leaves_allowed": 10, "is_carry_forward": 0, "carry_forward_balance": 0,  "applicable_after": 365,"max_continuous_days_allowed": 10 },
+    "Compensatory Off": { "max_leaves_allowed": 5,  "is_carry_forward": 0, "carry_forward_balance": 0,  "applicable_after": 0,  "max_continuous_days_allowed": 2 },
+    "Leave Without Pay":{ "max_leaves_allowed": 0,  "is_carry_forward": 0, "carry_forward_balance": 0,  "applicable_after": 0,  "max_continuous_days_allowed": 365, "is_lwp": 1 }
+  }
+}
