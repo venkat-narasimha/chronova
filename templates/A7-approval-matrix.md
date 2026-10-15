@@ -1,14 +1,10 @@
 # A7 — Approval Matrix Intake
 
-**Form Code:** A7
-**Form Name:** Approval Matrix — Document Type × Approver Routing
 **Date:** 2026-10-15
 **Version:** v1.0
 **Status:** ✅ Ready for prospect use
 **Owner:** Venkat Narasimha (Chronova)
-**Time to complete:** 25–35 minutes
 **Format:** Google Form OR Excel upload (CSV schema embedded below)
-**Companion forms:** A1 (Org Profile), A6 (Leave Policy)
 ---
 
 ## What This Is

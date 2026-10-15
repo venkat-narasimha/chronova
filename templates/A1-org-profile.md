@@ -1,12 +1,9 @@
 # A1 — Organization Profile Intake
 
-**Form Code:** A1
-**Form Name:** Organization Profile — Master Snapshot
 **Date:** 2026-10-15
 **Version:** v1.0
 **Status:** ✅ Ready for prospect use
 **Owner:** Venkat Narasimha (Chronova)
-**Time to complete:** 25–40 minutes
 **Format:** Google Form OR Excel upload (CSV schema embedded below)
 ---
 

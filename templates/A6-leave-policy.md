@@ -1,14 +1,10 @@
 # A6 — Leave Policy Intake
 
-**Form Code:** A6
-**Form Name:** Leave Policy — Entitlements, Accruals & Carry-Forward
 **Date:** 2026-10-15
 **Version:** v1.0
 **Status:** ✅ Ready for prospect use
 **Owner:** Venkat Narasimha (Chronova)
-**Time to complete:** 30–45 minutes
 **Format:** Google Form OR Excel upload (CSV schema embedded below)
-**Companion forms:** A1 (Org Profile), A7 (Approval Matrix)
 ---
 
 ## What This Is
